@@ -1,0 +1,15 @@
+
+
+data_manifest: 'HCPDevImgManifestBeh/datastructure_manifest.txt'
+img_manifest: 'HCPDevImgManifestBeh/fmriresults01.txt'
+
+
+
+
+packages:
+  structural_preproc_extended: 'Structural Preprocessing Extended'
+  structural_preproc_recommended: 'Structural Preprocessing Recommended'
+  structural_preproc_freesurfer: 'Structural Preprocessing FreeSurfer'
+  rfmri_preproc_extended: 'rfMRI Preprocessing Extended'
+  rfmri_preproc_recommended: 'rfMRI Preprocessing Recommended'
+
