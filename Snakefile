@@ -16,7 +16,7 @@ wildcard_constraints:
 rule all:
     input: 
         dirs = expand('results/{package}/{subject}',
-                subject=subjects[0],
+                subject=subjects,
                 package=config['packages'].keys())
 
 rule create_s3_list:
