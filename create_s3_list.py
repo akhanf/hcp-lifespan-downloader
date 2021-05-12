@@ -11,6 +11,5 @@ df_subj = df[df['associated_file'].str.contains(snakemake.wildcards.subject)]
 dataset_id = df_mri.loc[df_mri['job_name']==snakemake.params.package_name,'dataset_id'].unique()
     
 #get files for this dataset and write to file
-df_subj.loc[df['dataset_id']==dataset_id[0],'associated_file'].to_csv(snakemake.output.txt_file,header=False,index=False)
-
+df_subj.loc[df['dataset_id'].isin(dataset_id),'associated_file'].to_csv(snakemake.output.txt_file,header=False,index=False)
 
