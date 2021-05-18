@@ -37,5 +37,11 @@ rule download_package:
     shadow: 'minimal'
     output:
         dl_folder = directory('results/{package}/{subject}')
-    shell: "downloadcmd {input.txt_file} -d '.' -t -v -wt {threads} && "
-           " mv submission_*/* {output.dl_folder}"
+    shell: "if [ -s {input.txt_file} ];"
+           " then "
+           "  downloadcmd {input.txt_file} -d '.' -t -v -wt {threads} && "
+           "  mv submission_*/* {output.dl_folder}; "
+           " else "
+           "  mkdir -p {output.dl_folder} && touch {output.dl_folder}/NO_FILES_IN_MANIFEST;"
+           " fi"
+
