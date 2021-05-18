@@ -17,22 +17,40 @@ rule all:
     input: 
         dirs = expand('results/{package}/{subject}',
                 subject=subjects,
-                package=config['packages'].keys())
-
+                package=config['packages'].keys()),
+    
 rule create_s3_list:
     input:
         data_manifest = config['data_manifest'],
         img_manifest = config['img_manifest']
     params:
-        package_name = lambda wildcards: config['packages'][wildcards.package]
+        package_name = lambda wildcards: config['packages'][wildcards.package]['name']
     output: 
         txt_file = 'results/s3_lists/{package}/{subject}_{package}.txt'
     script: 'create_s3_list.py'
         
 
+rule filter_s3_list:
+    input:
+        txt_file = 'results/s3_lists/{package}/{subject}_{package}.txt'
+    params:
+        filters = lambda wildcards: config['packages'][wildcards.package]['filters']
+    output:
+        txt_file = 'results/s3_lists/{package}.filtered/{subject}_{package}.txt'
+    run:
+        for f in params.filters:
+            shell('grep {f} {input.txt_file} >> {output.txt_file}')
+
+
+def get_s3_txt(wildcards):
+    if 'filters' in config['packages'][wildcards.package]:
+        return 'results/s3_lists/{package}.filtered/{subject}_{package}.txt'.format(**wildcards)
+    else:
+        return 'results/s3_lists/{package}/{subject}_{package}.txt'.format(**wildcards)
+
 rule download_package:
     input: 
-        txt_file = 'results/s3_lists/{package}/{subject}_{package}.txt'
+        txt_file = get_s3_txt
     threads: 1
     shadow: 'minimal'
     output:
@@ -44,4 +62,6 @@ rule download_package:
            " else "
            "  mkdir -p {output.dl_folder} && touch {output.dl_folder}/NO_FILES_IN_MANIFEST;"
            " fi"
+
+
 
