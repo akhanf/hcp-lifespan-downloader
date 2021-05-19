@@ -1,7 +1,8 @@
 
 
-data_manifest: 'HCPAgingImgManifestBeh/datastructure_manifest.txt'
-img_manifest: 'HCPAgingImgManifestBeh/fmriresults01.txt'
+data_manifest: 'HCPDevImgManifestBeh/datastructure_manifest.txt'
+img_manifest: 'HCPDevImgManifestBeh/fmriresults01.txt'
+
 
 
 
@@ -18,8 +19,8 @@ packages:
   rfmri_preproc_extended: 
     name: 'rfMRI Preprocessing Extended'
     filters: 
-      - MNINonLinear/Results/fMRI_CONCAT_ALL/fMRI_CONCAT_ALL_hp0_clean.nii.gz
-      - MNINonLinear/xfms/rfMRI_REST1_PA2standard.nii.gz
+      - hp0_clean.nii.gz
+      - '[AP][AP]2standard'
 #  rfmri_preproc_recommended: 
 #    name: 'rfMRI Preprocessing Recommended'
 
