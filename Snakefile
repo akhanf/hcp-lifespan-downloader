@@ -39,7 +39,7 @@ rule filter_s3_list:
         txt_file = 'results/s3_lists/{package}.filtered/{subject}_{package}.txt'
     run:
         for f in params.filters:
-            shell('grep {f} {input.txt_file} >> {output.txt_file}')
+            shell("grep '{f}' {input.txt_file} >> {output.txt_file}")
 
 
 def get_s3_txt(wildcards):
