@@ -1,7 +1,7 @@
 
 
-data_manifest: 'HCPDevImgManifestBeh/datastructure_manifest.txt'
-img_manifest: 'HCPDevImgManifestBeh/fmriresults01.txt'
+data_manifest: '/project/6050199/ext-data/hcp_lifespan_preproc/etc/HCPDevImgManifestBeh/datastructure_manifest.txt'
+img_manifest: '/project/6050199/ext-data/hcp_lifespan_preproc/etc/HCPDevImgManifestBeh/fmriresults01.txt'
 
 
 
