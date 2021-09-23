@@ -1,26 +1,44 @@
 
 
-data_manifest: '/project/6050199/ext-data/hcp_lifespan_preproc/etc/HCPDevImgManifestBeh/datastructure_manifest.txt'
-img_manifest: '/project/6050199/ext-data/hcp_lifespan_preproc/etc/HCPDevImgManifestBeh/fmriresults01.txt'
+data_manifest: '/project/6050199/ext-data/hcp_lifespan_unprocessed/etc/Package_1192438/datastructure_manifest.txt'
+img_manifest: '/project/6050199/ext-data/hcp_lifespan_unprocessed/etc/Package_1192438/imagingcollection01.txt'
 
 
 
-
+#note: the filtered results are OR'd together, not AND
 
 packages:
+  rfmri_unprocessed:
+    name: 'Resting State fMRI Unprocessed'
+    filters: 
+      - rfMRI_REST1_AP
+#      - rfMRI_REST1_PA  # leave this out for now (not acquired in LOBE)
+
+  structural_unprocessed:
+    name: 'Structural Unprocessed'
+    filters:
+      - T1w
+      - T2w
+
+  diffusion_unprocessed:
+    name: 'Diffusion Unprocessed'
+    filters:
+      - dir98
+#      - dir99  # leave this out (not acquired in LOBE)
+
 #  structural_preproc_recommended: 
 #    name: 'Structural Preprocessing Recommended'
-  structural_preproc_extended: 
-    name: 'Structural Preprocessing Extended'
-    filters: 
-      -  MNINonLinear/xfms/acpc2MNILinear.mat
+#  structural_preproc_extended: 
+#    name: 'Structural Preprocessing Extended'
+#    filters: 
+#      -  MNINonLinear/xfms/acpc2MNILinear.mat
 #  structural_preproc_freesurfer: 
 #    name: 'Structural Preprocessing FreeSurfer'
-  rfmri_preproc_extended: 
-    name: 'rfMRI Preprocessing Extended'
-    filters: 
-      - hp0_clean.nii.gz
-      - '[AP][AP]2standard'
+#  rfmri_preproc_extended: 
+#    name: 'rfMRI Preprocessing Extended'
+#    filters: 
+#      - hp0_clean.nii.gz
+#      - '[AP][AP]2standard'
 #  rfmri_preproc_recommended: 
 #    name: 'rfMRI Preprocessing Recommended'
 
